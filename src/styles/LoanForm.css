@@ -1,0 +1,61 @@
+/* LoanForm.css */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .form input {
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .form input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  }
+
+  .form select {
+    appearance: none;
+    background-color: #000000e5;
+    border: 1px solid #ccc;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    color:  #7c7a7a;
+    transition: border 0.3s ease;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+  }
+  
+  .form select:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  
+  .form button {
+    padding: 12px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form button:hover {
+    background-color: #0056b3;
+  }
+  

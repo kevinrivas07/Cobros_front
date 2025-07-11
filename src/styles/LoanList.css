@@ -1,0 +1,162 @@
+/* LoanList.css */
+
+.loan-list {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 900px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loan-list h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.loan-list-table-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.loan-list table {
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse;
+    background-color: #f8fbff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loan-list th,
+.loan-list td {
+    padding: 14px 16px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+}
+
+.loan-list th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.loan-list td {
+    color: #333;
+    font-weight: 500;
+}
+
+.loan-list tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+.loan-list tr:hover {
+    background-color: #e6f0ff;
+    transition: background-color 0.3s ease;
+}
+
+/* Mejorar visualización de pagos */
+.pagos-section {
+    background: #eaf6ff;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    margin-top: 4px;
+    box-shadow: 0 1px 4px rgba(0,123,255,0.07);
+}
+.pagos-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 6px 0;
+}
+.pagos-section li {
+    background: #d1ecf1;
+    color: #0c5460;
+    border-radius: 5px;
+    margin-bottom: 4px;
+    padding: 4px 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.pagos-section .total-pagado {
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 6px;
+}
+.pagos-section .pago-form {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+    justify-content: center;
+}
+.pagos-section input[type="number"] {
+    width: 90px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    border: 1px solid #b3d7ff;
+}
+.pagos-section button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+.pagos-section button:hover {
+    background: #0056b3;
+}
+
+/* Acciones de terminar */
+.terminar-section {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+}
+.terminar-section input[type="text"] {
+    width: 80px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    border: 1px solid #b3d7ff;
+}
+.terminar-section button {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+.terminar-section button:hover {
+    background: #1e7e34;
+}
+.terminado-label {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 6px;
+    display: inline-block;
+}
+  
