@@ -51,9 +51,33 @@ const LoanForm = ({ onAddLoan }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const montoNum = parseNumber(monto);
-    const interes = Math.round(montoNum * 0.15);
+    const cantidadCuotas = parseInt(cuotas);
+
+    // 🧮 Tasa base mensual: 15%
+    const tasaMensual = 0.15;
+    let tasaAplicada = tasaMensual;
+
+    // Ajuste de la tasa según frecuencia
+    switch (frecuencia) {
+      case 'quincenal':
+        tasaAplicada = tasaMensual / 2; // 7.5%
+        break;
+      case 'diario':
+        tasaAplicada = tasaMensual / 30; // 0.5%
+        break;
+      case 'mensual':
+      default:
+        tasaAplicada = tasaMensual;
+        break;
+    }
+
+    // 🧮 Calcular interés total
+    const interes = Math.round(montoNum * tasaAplicada * cantidadCuotas);
     const total = montoNum + interes;
+    const cuota = Math.ceil(total / cantidadCuotas);
+
     const fecha = new Date();
     const fechaInicio = fecha.toLocaleDateString();
     const fechaFinal = calcularFechaFinal(fecha, cuotas, frecuencia);
@@ -63,7 +87,8 @@ const LoanForm = ({ onAddLoan }) => {
       monto: montoNum,
       interes,
       total,
-      cuotas: parseInt(cuotas),
+      cuota,
+      cuotas: cantidadCuotas,
       frecuencia,
       fecha: fechaInicio,
       fechaFinal,
@@ -100,7 +125,7 @@ const LoanForm = ({ onAddLoan }) => {
         type="text"
         placeholder="Monto prestado"
         value={monto}
-        onChange={e => {
+        onChange={(e) => {
           const soloNumeros = e.target.value.replace(/\D/g, '');
           setMonto(formatNumber(soloNumeros));
         }}
