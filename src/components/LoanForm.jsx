@@ -97,7 +97,7 @@ const LoanForm = ({ onAddLoan }) => {
     };
 
     try {
-      const res = await axios.post('http://localhost:4000/api/loans', nuevoPrestamo);
+      const res = await axios.post('cobrosback1.vercel.app/api/loans', nuevoPrestamo);
       alert('Préstamo guardado exitosamente.');
       if (onAddLoan) onAddLoan(res.data);
     } catch (err) {
