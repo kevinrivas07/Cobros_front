@@ -57,14 +57,14 @@ const LoanList = ({ loans, onUpdateLoans }) => {
     const id = loans[index]._id;
 
     try {
-      await axios.post(`http://cobros-back.vercel.app/api/loans/${id}/payments`, {
+      await axios.post(`https://cobros-back.vercel.app/api/loans/${id}/payments`, {
         total,
         interes,
         abono,
         fecha
       });
 
-      const res = await axios.get('http://cobros-back.vercel.app/api/loans');
+      const res = await axios.get('https://cobros-back.vercel.app/api/loans');
       onUpdateLoans(res.data);
       setNuevoPago({ ...nuevoPago, [index]: {} });
     } catch (err) {
@@ -75,11 +75,11 @@ const LoanList = ({ loans, onUpdateLoans }) => {
   const handleGuardarTerminado = async (index) => {
     const id = loans[index]._id;
     try {
-      await axios.patch(`http://cobros-back.vercel.app/api/loans/${id}/terminar`, {
+      await axios.patch(`https://cobros-back.vercel.app/api/loans/${id}/terminar`, {
         terminado: 'Terminado'
       });
 
-      const res = await axios.get('http://cobros-back.vercel.app/api/loans');
+      const res = await axios.get('https://cobros-back.vercel.app/api/loans');
       onUpdateLoans(res.data);
     } catch (err) {
       console.error('Error al marcar como terminado:', err);
