@@ -217,7 +217,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                       </div>
                     </div>
                     
-                    {/* Formulario para nuevo pago */}
+                    {/* Formulario para nuevo pag */}
                     <div className="detail-section">
                       <h4>Agregar Pago</h4>
                       <div className="pago-form-mobile">
