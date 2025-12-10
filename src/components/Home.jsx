@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     const obtenerPrestamos = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/loans');
+        const res = await axios.get('https://cobros-back.vercel.app/api/loans');
         setLoans(res.data);
       } catch (error) {
         console.error('Error al cargar préstamos:', error);
@@ -22,12 +22,12 @@ const Home = () => {
 
   const handleAddLoan = async (loan) => {
     try {
-      await axios.post('http://localhost:4000/api/loans', {
+      await axios.post('https://cobros-back.vercel.app/api/loans', {
         ...loan,
         pagos: [],
         terminado: '',
       });
-      const res = await axios.get('http://localhost:4000/api/loans');
+      const res = await axios.get('https://cobros-back.vercel.app/api/loans');
       setLoans(res.data);
     } catch (error) {
       console.error('Error al guardar préstamo:', error);
