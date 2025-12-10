@@ -43,6 +43,7 @@
   padding: 14px 16px;
   font-size: 16px;
   border: 1.5px solid #ddd;
+  color: #333;
   border-radius: 8px;
   transition: border-color 0.3s, box-shadow 0.3s;
   width: 100%;
