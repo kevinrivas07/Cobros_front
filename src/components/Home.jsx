@@ -19,7 +19,7 @@ const Home = () => {
     const obtenerPrestamos = async () => {
       try {
         setLoading(true);
-        const res = await axios.get('https://cobros-back.vercel.app /api/loans');
+        const res = await axios.get('https://cobros-back.vercel.app/api/loans');
         setLoans(res.data);
         calcularEstadisticas(res.data);
       } catch (error) {
