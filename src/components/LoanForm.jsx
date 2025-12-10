@@ -113,38 +113,72 @@ const LoanForm = ({ onAddLoan }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form">
-      <input
-        type="text"
-        placeholder="Nombre del cliente"
-        value={nombre}
-        onChange={(e) => setNombre(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Monto prestado"
-        value={monto}
-        onChange={(e) => {
-          const soloNumeros = e.target.value.replace(/\D/g, '');
-          setMonto(formatNumber(soloNumeros));
-        }}
-        required
-      />
-      <input
-        type="number"
-        placeholder="Número de cuotas"
-        value={cuotas}
-        onChange={(e) => setCuotas(e.target.value)}
-        required
-      />
-      <select value={frecuencia} onChange={(e) => setFrecuencia(e.target.value)} required>
-        <option value="diario">Diario</option>
-        <option value="quincenal">Quincenal</option>
-        <option value="mensual">Mensual</option>
-      </select>
-      <button type="submit">Registrar préstamo</button>
-    </form>
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="form">
+        <h2 className="form-title">Registrar Nuevo Préstamo</h2>
+        <div className="form-group">
+          <label htmlFor="nombre" className="form-label">Nombre del cliente</label>
+          <input
+            id="nombre"
+            type="text"
+            placeholder="Ingrese nombre completo"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            required
+            className="form-input"
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="monto" className="form-label">Monto prestado</label>
+          <input
+            id="monto"
+            type="text"
+            placeholder="Ej: 1.000.000"
+            value={monto}
+            onChange={(e) => {
+              const soloNumeros = e.target.value.replace(/\D/g, '');
+              setMonto(formatNumber(soloNumeros));
+            }}
+            required
+            className="form-input"
+          />
+        </div>
+        
+        <div className="form-row">
+          <div className="form-group form-col">
+            <label htmlFor="cuotas" className="form-label">Número de cuotas</label>
+            <input
+              id="cuotas"
+              type="number"
+              placeholder="Ej: 12"
+              value={cuotas}
+              onChange={(e) => setCuotas(e.target.value)}
+              required
+              className="form-input"
+              min="1"
+            />
+          </div>
+          
+          <div className="form-group form-col">
+            <label htmlFor="frecuencia" className="form-label">Frecuencia de pago</label>
+            <select 
+              id="frecuencia" 
+              value={frecuencia} 
+              onChange={(e) => setFrecuencia(e.target.value)} 
+              required
+              className="form-select"
+            >
+              <option value="diario">Diario</option>
+              <option value="quincenal">Quincenal</option>
+              <option value="mensual">Mensual</option>
+            </select>
+          </div>
+        </div>
+        
+        <button type="submit" className="form-button">Registrar préstamo</button>
+      </form>
+    </div>
   );
 };
 

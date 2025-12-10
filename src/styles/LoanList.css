@@ -1,162 +1,557 @@
-/* LoanList.css */
+/* LoanList.css - Versión Responsive */
 
-.loan-list {
-    margin-top: 40px;
-    width: 100%;
-    max-width: 900px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.loan-list-container {
+  width: 100%;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.loan-list h2 {
-    text-align: center;
-    color: #2c3e50;
-    font-size: 24px;
-    margin-bottom: 20px;
-    font-weight: 600;
+.loan-list-title {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 600;
 }
 
-.loan-list-table-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+/* Vista de tarjetas para móviles */
+.loan-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
 }
 
-.loan-list table {
-    width: 100%;
-    max-width: 1000px;
-    border-collapse: collapse;
-    background-color: #f8fbff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    font-size: 16px;
-    margin-left: auto;
-    margin-right: auto;
+.loan-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
-.loan-list th,
-.loan-list td {
-    padding: 14px 16px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-    font-size: 15px;
+.loan-card.expanded {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
 
-.loan-list th {
-    background-color: #007bff;
-    color: #fff;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.loan-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #f8fbff;
+  border-bottom: 1px solid #eaeaea;
+  cursor: pointer;
 }
 
-.loan-list td {
-    color: #333;
-    font-weight: 500;
+.loan-card-title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.loan-list tr:nth-child(even) {
-    background-color: #f1f1f1;
+.loan-card-title h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #2c3e50;
+  font-weight: 600;
 }
 
-.loan-list tr:hover {
-    background-color: #e6f0ff;
-    transition: background-color 0.3s ease;
+.loan-status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
 }
 
-/* Mejorar visualización de pagos */
-.pagos-section {
-    background: #eaf6ff;
-    border-radius: 8px;
-    padding: 10px 12px;
-    margin-bottom: 8px;
-    margin-top: 4px;
-    box-shadow: 0 1px 4px rgba(0,123,255,0.07);
-}
-.pagos-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 6px 0;
-}
-.pagos-section li {
-    background: #d1ecf1;
-    color: #0c5460;
-    border-radius: 5px;
-    margin-bottom: 4px;
-    padding: 4px 8px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.pagos-section .total-pagado {
-    font-weight: bold;
-    color: #007bff;
-    margin-bottom: 6px;
-}
-.pagos-section .pago-form {
-    display: flex;
-    gap: 6px;
-    margin-top: 6px;
-    justify-content: center;
-}
-.pagos-section input[type="number"] {
-    width: 90px;
-    padding: 4px 6px;
-    border-radius: 4px;
-    border: 1px solid #b3d7ff;
-}
-.pagos-section button {
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 5px 12px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.2s;
-}
-.pagos-section button:hover {
-    background: #0056b3;
+.loan-card-amount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
 }
 
-/* Acciones de terminar */
-.terminar-section {
-    display: flex;
-    gap: 6px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 8px;
+.total-amount {
+  font-size: 18px;
+  font-weight: 700;
+  color: #007bff;
 }
-.terminar-section input[type="text"] {
-    width: 80px;
-    padding: 4px 6px;
-    border-radius: 4px;
-    border: 1px solid #b3d7ff;
+
+.expand-icon {
+  font-size: 12px;
+  color: #7c7a7a;
 }
-.terminar-section button {
-    background: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 5px 12px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.2s;
+
+.loan-card-summary {
+  padding: 12px 16px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eaeaea;
 }
-.terminar-section button:hover {
-    background: #1e7e34;
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
 }
+
+.summary-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.summary-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.loan-card-details {
+  padding: 16px;
+}
+
+.detail-section {
+  margin-bottom: 20px;
+}
+
+.detail-section h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: #2c3e50;
+  font-weight: 600;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-label {
+  font-size: 13px;
+  color: #666;
+}
+
+.detail-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Historial de pagos en móvil */
+.pagos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.pago-item {
+  background-color: #eaf6ff;
+  border-radius: 8px;
+  padding: 12px;
+  border-left: 4px solid #007bff;
+}
+
+.pago-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.pago-fecha {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.pago-total {
+  font-size: 14px;
+  font-weight: 700;
+  color: #007bff;
+}
+
+.pago-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.pago-interes {
+  color: #007bff;
+}
+
+.pago-abono {
+  color: #28a745;
+}
+
+.no-pagos {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.resumen-pagos {
+  background-color: #f0f8ff;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 16px;
+}
+
+.resumen-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed #ddd;
+}
+
+.resumen-item:last-child {
+  border-bottom: none;
+}
+
+.resumen-item.destacado {
+  font-weight: 700;
+  color: #d35400;
+  font-size: 15px;
+}
+
+/* Formulario de pago en móvil */
+.pago-form-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pago-form-mobile .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pago-form-mobile label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+}
+
+.pago-form-mobile input {
+  padding: 10px 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.btn-add-payment {
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 8px;
+}
+
+.btn-add-payment:hover {
+  background-color: #0056b3;
+}
+
+.btn-terminar {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-terminar:hover {
+  background-color: #1e7e34;
+}
+
+.terminado-info {
+  text-align: center;
+  padding: 12px;
+  background-color: #e9f7ef;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
 .terminado-label {
-    color: #28a745;
-    font-weight: bold;
-    font-size: 15px;
-    margin-top: 6px;
-    display: inline-block;
+  color: #28a745;
+  font-weight: 600;
 }
+
+/* Vista de tabla para desktop/tablet */
+.loan-list-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.loan-list-table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  min-width: 800px;
+}
+
+.loan-list-table-wrapper th,
+.loan-list-table-wrapper td {
+  padding: 14px 12px;
+  text-align: left;
+  color: black;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 14px;
+}
+
+.loan-list-table-wrapper th {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.loan-list-table-wrapper tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+
+.loan-list-table-wrapper tr:hover {
+  background-color: #e6f0ff;
+}
+
+.expanded-row {
+  background-color: #e6f0ff !important;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+}
+
+.actions-cell {
+  white-space: nowrap;
+}
+
+.btn-toggle-details {
+  padding: 8px 16px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-toggle-details:hover {
+  background-color: #545b62;
+}
+
+.details-row {
+  background-color: #f8fbff !important;
+}
+
+.expanded-details {
+  padding: 20px;
+}
+
+.tablet-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.tablet-details .detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.tablet-details .detail-row span:first-child {
+  font-weight: 600;
+  color: #666;
+}
+
+/* Historial de pagos en tabla */
+.pagos-table {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eaeaea;
+}
+
+.pagos-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+  padding: 12px;
+  text-align: center;
+}
+
+.pago-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eaeaea;
+  text-align: center;
+  background-color: #f8fbff;
+}
+
+.pago-row:last-child {
+  border-bottom: none;
+}
+
+.pago-row:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.interes-amount {
+  color: #007bff;
+  font-weight: 600;
+}
+
+.abono-amount {
+  color: #28a745;
+  font-weight: 600;
+}
+
+/* Formulario de pago en tabla */
+.pago-form .form-inputs {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.pago-form h4 {
+  margin-bottom: 12px;
+}
+
+.pago-form input {
+  padding: 10px 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+.no-loans {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+/* Media Queries para Responsive Design */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .loan-list-title {
+    font-size: 22px;
+  }
   
+  .loan-list-table-wrapper table {
+    min-width: 700px;
+  }
+  
+  .pago-form .form-inputs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .pago-form input {
+    width: 100%;
+  }
+}
+
+/* Móvil (menos de 768px) */
+@media (max-width: 767px) {
+  .loan-list-container {
+    padding: 10px;
+  }
+  
+  .loan-list-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+}
+
+/* Móvil pequeño (menos de 480px) */
+@media (max-width: 480px) {
+  .loan-card-header {
+    padding: 14px;
+  }
+  
+  .loan-card-title h3 {
+    font-size: 16px;
+  }
+  
+  .total-amount {
+    font-size: 16px;
+  }
+  
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pago-form-mobile input {
+    font-size: 13px;
+  }
+  
+  .btn-add-payment,
+  .btn-terminar {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+/* Para pantallas muy grandes */
+@media (min-width: 1400px) {
+  .loan-list-container {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  
+  .loan-list-table-wrapper {
+    overflow-x: visible;
+  }
+  
+  .loan-list-table-wrapper table {
+    min-width: 100%;
+  }
+}
