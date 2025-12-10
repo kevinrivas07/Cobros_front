@@ -18,7 +18,7 @@ body, html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
-  h1 {
+  title h1 {
     text-align: center;
     color: #333;
     font-size: 28px;

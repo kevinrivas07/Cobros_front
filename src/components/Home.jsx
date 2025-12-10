@@ -36,7 +36,7 @@ const Home = () => {
 
   return (
     <div className="container">
-      <h1>Gestión de Préstamos (15%)</h1>
+      <h1 className='title'>Gestión de Préstamos (15%)</h1>
       <LoanForm onAddLoan={handleAddLoan} />
       <LoanList loans={loans} onUpdateLoans={setLoans} />
     </div>
