@@ -1,61 +1,201 @@
-/* LoanForm.css */
+/* LoanForm.css - Versión Responsive */
+
+.form-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  .form input {
-    padding: 12px 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  
-  .form input:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
 
-  .form select {
-    appearance: none;
-    background-color: #000000e5;
-    border: 1px solid #ccc;
-    padding: 10px 14px;
-    border-radius: 8px;
+.form-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  padding: 14px 16px;
+  font-size: 16px;
+  border: 1.5px solid #ddd;
+  color: #333;
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.form-select {
+  appearance: none;
+  background-color: #000000e5;
+  border: 1.5px solid #ddd;
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #fff;
+  transition: border 0.3s ease;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.form-button {
+  padding: 16px 20px;
+  font-size: 17px;
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.form-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.form-button:active {
+  transform: translateY(0);
+}
+
+/* Layout de filas y columnas para pantallas más grandes */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Media Queries para Responsive Design */
+
+/* Tablet y pantallas medianas (768px en adelante) */
+@media (min-width: 768px) {
+  .form-row {
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  .form-col {
+    flex: 1;
+  }
+  
+  .form-title {
+    font-size: 26px;
+  }
+  
+  .form {
+    padding: 40px;
+  }
+}
+
+/* Pantallas grandes (1024px en adelante) */
+@media (min-width: 1024px) {
+  .form-container {
+    max-width: 700px;
+  }
+  
+  .form-title {
+    font-size: 28px;
+  }
+  
+  .form {
+    gap: 24px;
+  }
+}
+
+/* Pantallas muy pequeñas (menos de 480px) */
+@media (max-width: 480px) {
+  .form-container {
+    padding: 10px;
+  }
+  
+  .form {
+    padding: 20px;
+    gap: 16px;
+  }
+  
+  .form-title {
+    font-size: 21px;
+  }
+  
+  .form-input,
+  .form-select {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+  
+  .form-button {
+    padding: 14px 16px;
     font-size: 16px;
-    color:  #7c7a7a;
-    transition: border 0.3s ease;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 12px;
+  }
+}
+
+/* Para pantallas extremadamente pequeñas (menos de 360px) */
+@media (max-width: 360px) {
+  .form {
+    padding: 15px;
   }
   
-  .form select:focus {
-    outline: none;
-    border-color: #007bff;
+  .form-title {
+    font-size: 19px;
   }
   
-  
-  .form button {
-    padding: 12px 15px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  .form-label {
+    font-size: 14px;
   }
   
-  .form button:hover {
-    background-color: #0056b3;
+  .form-input,
+  .form-select {
+    padding: 10px 12px;
+    font-size: 14px;
   }
   
+  .form-button {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+}
