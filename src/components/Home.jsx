@@ -19,7 +19,7 @@ const Home = () => {
     const obtenerPrestamos = async () => {
       try {
         setLoading(true);
-        const res = await axios.get('https://cobros-back.vercel.app/api/loans');
+        const res = await axios.get('http://localhost:3000/api/loans');
         setLoans(res.data);
         calcularEstadisticas(res.data);
       } catch (error) {
@@ -50,12 +50,12 @@ const Home = () => {
 
   const handleAddLoan = async (loan) => {
     try {
-      await axios.post('https://cobros-back.vercel.app/api/loans', {
+      await axios.post('http://localhost:3000/api/loans', {
         ...loan,
         pagos: [],
         terminado: '',
       });
-      const res = await axios.get('https://cobros-back.vercel.app/api/loans');
+      const res = await axios.get('http://localhost:3000/api/loans');
       setLoans(res.data);
       calcularEstadisticas(res.data);
     } catch (error) {
