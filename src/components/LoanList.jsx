@@ -215,11 +215,12 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                           <strong>
                             ${
                               Math.max(
-                                loan.total - (totalPagado(loan.pagos) + totalIntereses(loan.pagos)),
+                                loan.total - totalPagado(loan.pagos),
                                 0
                               ).toLocaleString('es-CO')
                             }
                           </strong>
+
 
                         </div>
                       </div>
@@ -404,11 +405,12 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                                   <strong>
                                     ${
                                       Math.max(
-                                        loan.total - (totalPagado(loan.pagos) + totalIntereses(loan.pagos)),
+                                        loan.total - totalPagado(loan.pagos),
                                         0
                                       ).toLocaleString('es-CO')
                                     }
                                   </strong>
+
 
                                 </div>
                               </div>
