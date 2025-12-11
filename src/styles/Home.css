@@ -231,7 +231,7 @@ body, html {
 @media (max-width: 1023px) {
   .home-title {
     font-size: 28px;
-    margin-top: 1500px;
+    margin-top: 1200px;
   }
   
   .stats-container {
