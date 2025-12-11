@@ -108,7 +108,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
   const getLoanStatus = (loan) => {
     const pagado = totalPagado(loan.pagos);
     const totalRestante = Math.max(loan.monto - pagado, 0);
-    
+
     if (loan.terminado) return { text: 'Terminado', color: '#28a745' };
     if (totalRestante === 0) return { text: 'Pagado', color: '#007bff' };
     if (totalRestante < loan.monto * 0.5) return { text: 'En progreso', color: '#ffc107' };
@@ -118,7 +118,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
   return (
     <div className="loan-list-container">
       <h2 className="loan-list-title">Préstamos Registrados</h2>
-      
+
       {isMobile ? (
         // Vista móvil - Tarjetas
         <div className="loan-cards">
@@ -127,7 +127,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
             const pagado = totalPagado(loan.pagos);
             const estaPagado = pagado >= loan.total;
             const isExpanded = expandedLoan === index;
-            
+
             return (
               <div key={index} className={`loan-card ${isExpanded ? 'expanded' : ''}`}>
                 <div className="loan-card-header" onClick={() => toggleExpandLoan(index)}>
@@ -142,7 +142,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                     <span className="expand-icon">{isExpanded ? '▲' : '▼'}</span>
                   </div>
                 </div>
-                
+
                 <div className="loan-card-summary">
                   <div className="summary-row">
                     <span className="summary-label">Monto:</span>
@@ -157,7 +157,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                     <span className="summary-value">{loan.cuotas} ({loan.frecuencia})</span>
                   </div>
                 </div>
-                
+
                 {isExpanded && (
                   <div className="loan-card-details">
                     {/* Detalles del préstamo */}
@@ -178,7 +178,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Historial de pagos */}
                     <div className="detail-section">
                       <h4>Historial de Pagos</h4>
@@ -200,7 +200,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                       ) : (
                         <p className="no-pagos">No hay pagos registrados</p>
                       )}
-                      
+
                       <div className="resumen-pagos">
                         <div className="resumen-item">
                           <span>Total abonos:</span>
@@ -212,11 +212,19 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                         </div>
                         <div className="resumen-item destacado">
                           <span>Deuda restante:</span>
-                          <strong>${Math.max(loan.monto - totalPagado(loan.pagos), 0).toLocaleString('es-CO')}</strong>
+                          <strong>
+                            ${
+                              Math.max(
+                                loan.total - (totalPagado(loan.pagos) + totalIntereses(loan.pagos)),
+                                0
+                              ).toLocaleString('es-CO')
+                            }
+                          </strong>
+
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Formulario para nuevo pag */}
                     <div className="detail-section">
                       <h4>Agregar Pago</h4>
@@ -248,7 +256,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                             onChange={e => handlePagoChange(index, 'abono', e.target.value)}
                           />
                         </div>
-                        <button 
+                        <button
                           className="btn-add-payment"
                           onClick={() => handleAgregarPago(index)}
                         >
@@ -256,7 +264,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                         </button>
                       </div>
                     </div>
-                    
+
                     {/* Botón para marcar como terminado */}
                     {estaPagado && !loan.terminado && (
                       <div className="terminar-section">
@@ -268,7 +276,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                         </button>
                       </div>
                     )}
-                    
+
                     {loan.terminado && (
                       <div className="terminado-info">
                         <span className="terminado-label">✅ Terminado: {loan.terminado}</span>
@@ -324,7 +332,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                         </span>
                       </td>
                       <td className="actions-cell">
-                        <button 
+                        <button
                           className="btn-toggle-details"
                           onClick={() => toggleExpandLoan(index)}
                         >
@@ -332,7 +340,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                         </button>
                       </td>
                     </tr>
-                    
+
                     {isExpanded && (
                       <tr className="details-row">
                         <td colSpan={isTablet ? 6 : 11}>
@@ -357,7 +365,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                                 </div>
                               </div>
                             )}
-                            
+
                             {/* Historial de pagos */}
                             <div className="pagos-section">
                               <h4>Historial de Pagos</h4>
@@ -381,7 +389,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                               ) : (
                                 <p className="no-pagos">No hay pagos registrados</p>
                               )}
-                              
+
                               <div className="resumen-pagos">
                                 <div className="resumen-item">
                                   <span>Total abonos:</span>
@@ -393,11 +401,19 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                                 </div>
                                 <div className="resumen-item destacado">
                                   <span>Deuda restante:</span>
-                                  <strong>${Math.max(loan.monto - totalPagado(loan.pagos), 0).toLocaleString('es-CO')}</strong>
+                                  <strong>
+                                    ${
+                                      Math.max(
+                                        loan.total - (totalPagado(loan.pagos) + totalIntereses(loan.pagos)),
+                                        0
+                                      ).toLocaleString('es-CO')
+                                    }
+                                  </strong>
+
                                 </div>
                               </div>
                             </div>
-                            
+
                             {/* Formulario para nuevo pago */}
                             <div className="pago-form">
                               <h4>Agregar Nuevo Pago</h4>
@@ -420,7 +436,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                                   value={nuevoPago[index]?.abono || ''}
                                   onChange={e => handlePagoChange(index, 'abono', e.target.value)}
                                 />
-                                <button 
+                                <button
                                   className="btn-add-payment"
                                   onClick={() => handleAgregarPago(index)}
                                 >
@@ -428,7 +444,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                                 </button>
                               </div>
                             </div>
-                            
+
                             {/* Botón para marcar como terminado */}
                             <div className="terminar-section">
                               {estaPagado && !loan.terminado && (
@@ -439,7 +455,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
                                   ✅ Marcar como Terminado
                                 </button>
                               )}
-                              
+
                               {loan.terminado && (
                                 <span className="terminado-label">✅ Terminado: {loan.terminado}</span>
                               )}
@@ -455,7 +471,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
           </table>
         </div>
       )}
-      
+
       {loans.length === 0 && (
         <div className="no-loans">
           <p>No hay préstamos registrados</p>
