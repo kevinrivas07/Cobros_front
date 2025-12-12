@@ -32,6 +32,11 @@ const Home = () => {
     obtenerPrestamos();
   }, []);
 
+  // Actualizar estadísticas cuando cambie la lista de préstamos
+  useEffect(() => {
+    calcularEstadisticas(loans);
+  }, [loans]);
+
   const calcularEstadisticas = (prestamos) => {
     const totalPrestamos = prestamos.length;
     const totalMonto = prestamos.reduce((sum, loan) => sum + loan.monto, 0);
@@ -48,18 +53,14 @@ const Home = () => {
     });
   };
 
-  const handleAddLoan = async (loan) => {
+  const handleAddLoan = async () => {
     try {
-      await axios.post('https://cobros-back.vercel.app/api/loans', {
-        ...loan,
-        pagos: [],
-        terminado: '',
-      });
+      // Obtener la lista actualizada de préstamos después de agregar uno nuevo
       const res = await axios.get('https://cobros-back.vercel.app/api/loans');
       setLoans(res.data);
       calcularEstadisticas(res.data);
     } catch (error) {
-      console.error('Error al guardar préstamo:', error);
+      console.error('Error al actualizar lista de préstamos:', error);
     }
   };
 
@@ -135,7 +136,13 @@ const Home = () => {
             </div>
           ) : (
             <div className="list-wrapper">
-              <LoanList loans={loans} onUpdateLoans={setLoans} />
+              <LoanList 
+                loans={loans} 
+                onUpdateLoans={(newLoans) => {
+                  setLoans(newLoans);
+                  calcularEstadisticas(newLoans);
+                }} 
+              />
             </div>
           )}
         </section>

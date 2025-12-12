@@ -97,9 +97,12 @@ const LoanForm = ({ onAddLoan }) => {
     };
 
     try {
-      const res = await axios.post('https://cobros-back.vercel.app/api/loans', nuevoPrestamo);
+      await axios.post('https://cobros-back.vercel.app/api/loans', nuevoPrestamo);
       alert('Préstamo guardado exitosamente.');
-      if (onAddLoan) onAddLoan(res.data);
+      // Llamar a onAddLoan para actualizar la lista automáticamente
+      if (onAddLoan) {
+        await onAddLoan();
+      }
     } catch (err) {
       console.error('Error al guardar préstamo:', err);
       alert('Error al guardar el préstamo');

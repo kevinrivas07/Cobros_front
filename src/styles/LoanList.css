@@ -1,9 +1,12 @@
-/* LoanList.css - Versión Responsive */
+/* LoanList.css - Versión Responsive con Scroll */
 
 .loan-list-container {
   width: 100%;
   padding: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .loan-list-title {
@@ -12,6 +15,36 @@
   font-size: 24px;
   margin-bottom: 20px;
   font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* Contenedor principal con scroll */
+.loan-list-content-wrapper {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  border-radius: 12px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  background-color: #f8f9fa;
+}
+
+/* Scroll personalizado */
+.loan-list-content-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.loan-list-content-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.loan-list-content-wrapper::-webkit-scrollbar-thumb {
+  background: #007bff;
+  border-radius: 4px;
+}
+
+.loan-list-content-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #0056b3;
 }
 
 /* Vista de tarjetas para móviles */
@@ -20,6 +53,8 @@
   flex-direction: column;
   gap: 16px;
   width: 100%;
+  padding: 15px;
+  padding-right: 23px; /* Espacio para el scroll */
 }
 
 .loan-card {
@@ -28,6 +63,7 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .loan-card.expanded {
@@ -252,6 +288,7 @@
   border: 1.5px solid #ddd;
   border-radius: 6px;
   font-size: 14px;
+  background-color: white;
 }
 
 .btn-add-payment {
@@ -302,9 +339,11 @@
 /* Vista de tabla para desktop/tablet */
 .loan-list-table-wrapper {
   width: 100%;
+  height: 100%;
   overflow-x: auto;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  background-color: white;
 }
 
 .loan-list-table-wrapper table {
@@ -358,6 +397,12 @@
   white-space: nowrap;
 }
 
+.actions-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 .btn-toggle-details {
   padding: 8px 16px;
   background-color: #6c757d;
@@ -372,6 +417,45 @@
 
 .btn-toggle-details:hover {
   background-color: #545b62;
+}
+
+.btn-delete {
+  padding: 8px 12px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+.btn-delete-mobile {
+  padding: 8px 12px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+}
+
+.btn-delete-mobile:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
 }
 
 .details-row {
@@ -465,6 +549,7 @@
   border-radius: 6px;
   font-size: 14px;
   min-width: 120px;
+  background-color: white;
 }
 
 .no-loans {
@@ -474,7 +559,8 @@
   font-size: 16px;
   background-color: #f9f9f9;
   border-radius: 12px;
-  margin-top: 20px;
+  margin: 20px;
+  flex-shrink: 0;
 }
 
 /* Media Queries para Responsive Design */
@@ -497,17 +583,34 @@
   .pago-form input {
     width: 100%;
   }
+  
+  /* Ajustes específicos para tablet */
+  .loan-list-content-wrapper {
+    max-height: calc(100vh - 180px);
+  }
 }
 
 /* Móvil (menos de 768px) */
 @media (max-width: 767px) {
   .loan-list-container {
     padding: 10px;
+    height: 100vh;
+    overflow: hidden;
   }
   
   .loan-list-title {
     font-size: 20px;
     margin-bottom: 16px;
+    padding-top: 10px;
+  }
+  
+  .loan-list-content-wrapper {
+    max-height: calc(100vh - 120px);
+    padding-right: 5px;
+  }
+  
+  .loan-cards {
+    padding-right: 18px; /* Ajuste para scroll móvil */
   }
 }
 
@@ -538,6 +641,10 @@
     padding: 10px;
     font-size: 14px;
   }
+  
+  .loan-list-content-wrapper {
+    max-height: calc(100vh - 100px);
+  }
 }
 
 /* Para pantallas muy grandes */
@@ -545,6 +652,10 @@
   .loan-list-container {
     max-width: 1300px;
     margin: 0 auto;
+  }
+  
+  .loan-list-content-wrapper {
+    max-height: 800px; /* Altura máxima fija para pantallas grandes */
   }
   
   .loan-list-table-wrapper {
