@@ -27,10 +27,45 @@ body, html {
 .home-header {
   background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
   color: white;
-  margin-top: 1050px; /* BAJAR*/
   padding: 25px 20px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+  position: relative;
+}
+
+/* Botón de cerrar sesión */
+.logout-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  backdrop-filter: blur(5px);
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.logout-btn:active {
+  transform: scale(0.95);
+}
+
+.logout-icon {
+  font-size: 20px;
+  line-height: 1;
+  display: block;
 }
 
 .home-title {
@@ -231,7 +266,7 @@ body, html {
 @media (max-width: 1023px) {
   .home-title {
     font-size: 28px;
-    margin-top: 920px;
+   
   }
   
   .stats-container {
@@ -259,7 +294,18 @@ body, html {
 @media (max-width: 767px) {
   .home-header {
     padding: 20px 15px;
-    
+    padding-top: 50px; /* Espacio para el botón */
+  }
+
+  .logout-btn {
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .logout-icon {
+    font-size: 14px;
   }
   
   .home-title {
@@ -304,6 +350,21 @@ body, html {
 
 /* Móvil pequeño (menos de 480px) */
 @media (max-width: 480px) {
+  .home-header {
+    padding-top: 50px;
+  }
+
+  .logout-btn {
+    top: 8px;
+    right: 8px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .logout-icon {
+    font-size: 13px;
+  }
+
   .home-title {
     font-size: 22px;
     
