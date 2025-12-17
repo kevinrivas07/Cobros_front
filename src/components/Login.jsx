@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/Auth.css';
 
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -52,7 +53,12 @@ const Login = () => {
           </Link>
         </div>
       </div>
+      <Link to="/register" className='oculto'>
+        T
+      </Link>
+
     </div>
+    
   );
 };
 

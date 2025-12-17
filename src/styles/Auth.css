@@ -37,6 +37,20 @@ html, body {
   background-color: #667eea;
 }
 
+.oculto {
+  color: #184988;
+  font-size: 40px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+}
+
+.oculto:hover {
+  color: #184988;
+  text-decoration: underline;
+}
+
 .auth-page::before {
   content: '';
   position: absolute;
@@ -191,6 +205,10 @@ html, body {
 @media (max-width: 480px) {
   .auth-card {
     padding: 24px 20px;
+  }
+
+  .oculto{
+    color: #35aca000;
   }
 
   .auth-title {
