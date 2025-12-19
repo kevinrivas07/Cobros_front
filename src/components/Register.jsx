@@ -1,14 +1,30 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import '../styles/Auth.css'
+import axios from 'axios';
+import '../styles/Auth.css';
 
 const Register = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí luego se puede integrar la lógica real de registro
-    navigate('/login');
+
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/register`,
+        { name, email, password }
+      );
+
+      alert('Usuario registrado correctamente');
+      navigate('/login');
+
+    } catch (error) {
+      alert(error.response?.data?.message || 'Error al registrarse');
+    }
   };
 
   return (
@@ -21,33 +37,18 @@ const Register = () => {
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="auth-field">
-            <label htmlFor="name">Nombre completo</label>
-            <input
-              id="name"
-              type="text"
-              placeholder="Tu nombre"
-              required
-            />
+            <label>Nombre completo</label>
+            <input name="name" type="text" required />
           </div>
 
           <div className="auth-field">
-            <label htmlFor="email">Correo electrónico</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="tu@correo.com"
-              required
-            />
+            <label>Correo electrónico</label>
+            <input name="email" type="email" required />
           </div>
 
           <div className="auth-field">
-            <label htmlFor="password">Contraseña</label>
-            <input
-              id="password"
-              type="password"
-              placeholder="Mínimo 6 caracteres"
-              required
-            />
+            <label>Contraseña</label>
+            <input name="password" type="password" required />
           </div>
 
           <button type="submit" className="auth-button">
@@ -57,9 +58,7 @@ const Register = () => {
 
         <div className="auth-footer-text">
           <span>¿Ya tienes cuenta?</span>
-          <Link to="/login" className="auth-link">
-            Inicia sesión
-          </Link>
+          <Link to="/login" className="auth-link">Inicia sesión</Link>
         </div>
       </div>
     </div>
@@ -67,5 +66,3 @@ const Register = () => {
 };
 
 export default Register;
-
-

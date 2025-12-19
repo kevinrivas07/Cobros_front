@@ -1,15 +1,31 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/Auth.css';
-
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí luego se puede integrar la lógica real de autenticación
-    navigate('/home');
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/login`,
+        { email, password }
+      );
+
+      // Guardar token JWT
+      localStorage.setItem('token', res.data.token);
+
+      navigate('/home');
+
+    } catch (error) {
+      alert(error.response?.data?.message || 'Credenciales incorrectas');
+    }
   };
 
   return (
@@ -25,6 +41,7 @@ const Login = () => {
             <label htmlFor="email">Correo electrónico</label>
             <input
               id="email"
+              name="email"
               type="email"
               placeholder="tu@correo.com"
               required
@@ -35,6 +52,7 @@ const Login = () => {
             <label htmlFor="password">Contraseña</label>
             <input
               id="password"
+              name="password"
               type="password"
               placeholder="Tu contraseña"
               required
@@ -53,15 +71,8 @@ const Login = () => {
           </Link>
         </div>
       </div>
-      <Link to="/register" className='oculto'>
-        T
-      </Link>
-
     </div>
-    
   );
 };
 
 export default Login;
-
-
