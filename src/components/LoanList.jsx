@@ -85,7 +85,7 @@ const LoanList = ({ loans, onUpdateLoans }) => {
     } catch (err) {
       console.error('Error al agregar pago:', err);
     }
-  };
+  }; 
 
   const handleGuardarTerminado = async (index) => {
     const id = loans[index]._id;
