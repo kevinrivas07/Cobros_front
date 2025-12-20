@@ -10,7 +10,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/sapo" element={<Register />} />
         <Route path="/home" element={<Home />} />
         {/* Si la ruta no existe, redirige al login */}
         <Route path="*" element={<Navigate to="/login" replace />} />

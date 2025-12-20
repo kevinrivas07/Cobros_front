@@ -64,12 +64,12 @@ const Login = () => {
           </button>
         </form>
 
-        <div className="auth-footer-text">
+        {/*<div className="auth-footer-text">
           <span>¿No tienes cuenta?</span>
           <Link to="/register" className="auth-link">
             Crear una cuenta
           </Link>
-        </div>
+        </div>*/}
       </div>
     </div>
   );
