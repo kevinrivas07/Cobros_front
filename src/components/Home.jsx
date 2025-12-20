@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoanForm from '../components/LoanForm';
 import LoanList from '../components/LoanList';
 import '../styles/Home.css';
 
 const Home = () => {
+  const navigate = useNavigate();
   const [loans, setLoans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({
@@ -19,7 +21,7 @@ const Home = () => {
     const obtenerPrestamos = async () => {
       try {
         setLoading(true);
-        const res = await axios.get('https://cobros-back.vercel.app/api/loans');
+        const res = await axios.get('https://cobros-front-eta.vercel.app/api/loans');
         setLoans(res.data);
         calcularEstadisticas(res.data);
       } catch (error) {
@@ -56,7 +58,7 @@ const Home = () => {
   const handleAddLoan = async () => {
     try {
       // Obtener la lista actualizada de préstamos después de agregar uno nuevo
-      const res = await axios.get('https://cobros-back.vercel.app/api/loans');
+      const res = await axios.get('https://cobros-front-eta.vercel.app/api/loans');
       setLoans(res.data);
       calcularEstadisticas(res.data);
     } catch (error) {
@@ -64,9 +66,17 @@ const Home = () => {
     }
   };
 
+  const handleLogout = () => {
+    // Aquí puedes agregar lógica adicional como limpiar tokens, etc.
+    navigate('/login');
+  };
+
   return (
     <div className="home-container">
       <header className="home-header">
+        <button className="logout-btn" onClick={handleLogout} title="Cerrar sesión">
+          <span className="logout-icon">🚪</span>
+        </button>
         <h1 className="home-title">Gestión de Préstamos (15%)</h1>
         <p className="home-subtitle">Sistema de administración de préstamos personales</p>
       </header>

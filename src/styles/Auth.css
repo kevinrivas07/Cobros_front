@@ -1,0 +1,219 @@
+/* Reset para asegurar que no haya espacios blancos */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fondo suave y centrado */
+.auth-page {
+  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  overflow: hidden;
+  background-color: #667eea;
+}
+
+.oculto {
+  color: #184988;
+  font-size: 40px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+}
+
+.oculto:hover {
+  color: #184988;
+  text-decoration: underline;
+}
+
+.auth-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/pesos.jpg");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  opacity: 1;
+  z-index: 0;
+  /* Mejoras para mejor calidad de imagen */
+  image-rendering: auto;
+  transform: translateZ(0);
+  will-change: transform;
+  /* Filtro sutil para mejorar la apariencia */
+  filter: brightness(1.05) contrast(1.05) saturate(1.1);
+}
+
+.auth-page::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  /* Overlay más sutil para que la imagen se vea mejor */
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+  z-index: 0;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 24px;
+  padding: 40px 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.auth-title {
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.auth-subtitle {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-field label {
+  font-size: 0.9rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.auth-field input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  background-color: #f9fafb;
+}
+
+.auth-field input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.25);
+  background-color: #ffffff;
+}
+
+.auth-button {
+  margin-top: 4px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.auth-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+  background: linear-gradient(135deg, #7c8ef0 0%, #8b5cf6 100%);
+}
+
+.auth-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+}
+
+.auth-footer-text {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6b7280;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.auth-link {
+  color: #667eea;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.auth-link:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 24px 20px;
+  }
+
+  .oculto{
+    color: #35aca000;
+  }
+
+  .auth-title {
+    font-size: 1.6rem;
+  }
+}
+
+
