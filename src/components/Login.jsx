@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from 'axios';
 import '../styles/Auth.css';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState(""); // <-- faltaba este estado
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const email = e.target.email.value;
-    const password = e.target.password.value;
+    const passwordInput = e.target.password.value;
 
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/login`,
-        { email, password }
+        { email, password: passwordInput }
       );
 
-      // Guardar token JWT
       localStorage.setItem('token', res.data.token);
-
       navigate('/home');
 
     } catch (error) {
@@ -49,14 +50,26 @@ const Login = () => {
           </div>
 
           <div className="auth-field">
-            <label htmlFor="password">Contraseña</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Tu contraseña"
-              required
-            />
+            <label htmlFor="password">Contraseña:</label>
+
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={password}  // <-- ahora sí existe
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="********"
+                required
+              />
+
+              <span
+                className="toggle-password"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
           </div>
 
           <button type="submit" className="auth-button">
