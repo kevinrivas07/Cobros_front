@@ -75,6 +75,31 @@ html, body {
   filter: brightness(1.05) contrast(1.05) saturate(1.1);
 }
 
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 45px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #667eea;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-password:hover {
+  color: #764ba2;
+}
+
 .auth-page::after {
   content: '';
   position: absolute;
