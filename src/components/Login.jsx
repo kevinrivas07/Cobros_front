@@ -84,7 +84,7 @@ const Login = () => {
           </Link>
         </div>*/}
       </div>
-      <a href="https://elmundodelatecnologiaf.vercel.app/" target="_black" className="created">Created by: El Mundo De La Tecnologia</a>
+      <a href="https://elmundodelatecnologiaf.vercel.app/" target="_blank" className="created" rel="noopener noreferrer">Created by: El Mundo De La Tecnologia</a>
     </div>
   );
 };
