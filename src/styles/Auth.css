@@ -37,6 +37,16 @@ html, body {
   background-color: #667eea;
 }
 
+.created {
+  position: fixed;
+  text-decoration: none;
+  bottom: 10px;
+  left: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
 .oculto {
   color: #184988;
   font-size: 40px;
